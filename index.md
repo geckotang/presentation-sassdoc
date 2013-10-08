@@ -24,18 +24,11 @@ Ruby製のSASSドキュメントジェネレーターです。
 
 ## sassdocができる事
 
+- SASS内に書いたコメントからドキュメントを作成
+- sassdoc記法にそって書いた内容が整形されて表示される
 - ドキュメント内のmixinやfunctionを検索できる
-- 表示する内容のフィルター(mixinのみ表示、functionのみ表示）
-- カスタマイズ出来るテンプレート ( [Dustjs](http://akdubya.github.com/dustjs)っていうテンプレートエンジン )
-
----
-
-## インストール
-
-```sh
-[sudo] gem install sassdoc
-```
-
+- 表示する内容のフィルター出来る(mixinのみ表示、functionのみ表示）
+- テンプレートがカスタマイズ出来る ( [Dustjs](http://akdubya.github.com/dustjs)っていうテンプレートエンジン )
 ---
 
 ## こんな記法
@@ -60,16 +53,28 @@ jsDocToolKitっぽい書き方が出来ます。
 
 ---
 
-## 生成してみた
+## インストール
+
+```sh
+[sudo] gem install sassdoc
+```
+
+---
+
+## ディレクトリ構成
 
 以下の様なディレクトリ構成
 
 ```
 ┣src
 ┃┣ style.scss
-┃┗ mixin.scss
-┗docs
+┃┗ _mixin.scss
+┗docs/
 ```
+
+---
+
+## 生成してみた
 
 - ``src``以下にある``scss``をもとに、``docs``にドキュメントを作成します。
 - ドキュメントのタイトルは``俺の考えた最強のドキュメント``とします。
@@ -78,12 +83,38 @@ jsDocToolKitっぽい書き方が出来ます。
 sassdoc src -d docs -n '俺の考えた最強のドキュメント'
 ```
 
+---
+
+## 生成された
+
+```
+┣src
+┃┣ style.scss
+┃┗ mixin.scss
+┗docs/
+　┣ css/
+　┣ js/
+　┣ tmpl/
+　┣ index.html       #ドキュメントトップページ
+　┃┣ nav.tmpl       #上部ナビゲーション
+　┃┣ toc.tmpl       #左カラム
+　┃┗ view.tmpl      #右カラム
+　┗ sassdoc.json     #テンプレートで使用するデータ
+```
+
 生成された[サンプルはこちら](http://geckotang.github.io/sassdoc-tryout/docs/)
+
+<small>※sassdoc.jsonを$.getJSONしてリッチなページにしているので、サーバー上でしか動きません。</small>
 
 ---
 
+## まとめ
 
-- 指定された記法で書かれたコメントの部分を抽出して、ページ表示用のjsonを作成します。
-- なのでsassdoc記法でかかれてないstyle.scssの内容はドキュメントには反映されません
-- SCSS内に書かれているコメント以外の物は使用してなさそうなので、styleDoccoとの共存も可能かと思います。
+- SASSなどのプリプロセッサでできる事が他のプログラミング言語に近づいている
+- ということは、他言語のようにドキュメント作成ツールは必要
+- 詳しくはソース見てね！とかは悲しい…
+- 既存のテンプレはどことなく見辛いので、自分で作ったほうが良さそう。
+
+
+
 
