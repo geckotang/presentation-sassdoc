@@ -74,7 +74,7 @@ jsDocToolKitっぽい書き方が出来ます。
 
 ---
 
-## 生成してみた
+## 生成してみる
 
 - ``src``以下にある``scss``をもとに、``docs``にドキュメントを作成します。
 - ドキュメントのタイトルは``俺の考えた最強のドキュメント``とします。
@@ -82,6 +82,8 @@ jsDocToolKitっぽい書き方が出来ます。
 ```
 sassdoc src -d docs -n '俺の考えた最強のドキュメント'
 ```
+
+各オプションについては[README](https://github.com/eoneill/sassdoc/blob/master/README.md)を見てね！
 
 ---
 
